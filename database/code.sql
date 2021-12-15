@@ -1,4 +1,4 @@
-
+```
 /*CREATE EXTENSION pgcrypto;*/
 -- select 'drop table if exists "' || tablename || '" cascade;' from pg_tables;
 
@@ -46,21 +46,21 @@ create table Builder (
 );
 
 
-insert into Builder values  ('B1','Architect','Amal','Vinod',
+insert into Builder values  ('B1','Architect','Anjana','Suresh',
 						   'Abids','kottayam','Kerala',688002,'M',
-						   80000.00,'B1','amalvinod@gmail.com',9595959501,crypt('Amal123',gen_salt('bf',4))),
+						   80000.00,'B1','anjana@gmail.com',9595959501,crypt('anjana123',gen_salt('bf',4))),
 						   
-						   ('B2','Civil Engr','Arun','Ramanath',
+						   ('B2','Civil Engr','Amal','Vinod',
 						   'Abids','Munnar','Kerala',688088,'M',
-						   50000.00,'B1','arunramanath@gmail.com',9595959502,crypt('Arun123',gen_salt('bf',4))),
+						   50000.00,'B1','amal@gmail.com',9595959502,crypt('amal123',gen_salt('bf',4))),
 						   
-						   ('B3','Builder','Vaishnav','Bhaskar',
+						   ('B3','Builder','Anagha','Manoj',
 						   'Abids','Kozhikode','Kerala',688112,'M',
-						   110000.00,'B1','vaishnavbhaskar@gmail.com',9595959503,crypt('Vaishnav123',gen_salt('bf',4))),
+						   110000.00,'B1','anagha@gmail.com',9595959503,crypt('anagha123',gen_salt('bf',4))),
 						   
-						   ('B4','Architect','Krithin','Biju',
+						   ('B4','Architect','Emeric','Alex',
 						   'Abids','Allapuzha','Kerala',688008,'M',
-						   70000.00,'B1','krithinbiju@gmail.com',9595959504,crypt('Krithin123',gen_salt('bf',4))),
+						   70000.00,'B1','emeric@gmail.com',9595959504,crypt('emeric123',gen_salt('bf',4))),
 						   
 						   ('B5','Civil Engr','Sarang','Krishna',
 						   'Abids','Kottayam','Kerala',688004,'M',
