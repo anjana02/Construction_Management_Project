@@ -1,217 +1,132 @@
 package gui;
 
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.Label;
+import actorClasses.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JButton;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-public class BuilderGui {
+public class BuilderGui implements ActionListener {
+	JButton update=null;
+	JFrame builderWindow =null;
+	JButton exit=null;
+	Builder c;
+	JFrame f;
+	String p ;
+	String str;
+	JTextField status=null;
+	JTextField id=null;
 
-	public JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BuilderGui window = new BuilderGui();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public BuilderGui(String username)
+	{
+		c= new Builder(username);
+		builderWindow = new JFrame();
+		 @SuppressWarnings("unused")
+		ImageIcon img = new ImageIcon("src/Construction.jpg");
+		JLabel background = new JLabel("",JLabel.CENTER);
+		
+		JLabel user = new JLabel("Welcome! "+c.name);
+	    user.setBounds(10,7,250,12);
+	    user.setForeground(Color.BLACK);
+	    user.setFont(new Font("Times New Roman", Font.BOLD, 18));
+	    builderWindow.add(user);
+	    
+	    exit = new JButton("Exit");
+        exit.setBounds(900,7,90,18);
+        exit.setForeground(Color.BLACK);
+        exit.setFont(new Font("Times New Roman", Font.BOLD, 15));
+        builderWindow.add(exit);
+        exit.addActionListener(this);
+		
+		JLabel head=new JLabel("Ongoing Projects",JLabel.CENTER);
+		head.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		head.setBounds(380, 30, 300, 40);
+		builderWindow.add(head);
+		
+		JPanel middle = new JPanel();
+		
+		String data[][]= c.getProjects();
+		String column[]= {"PROJECT NO","PROJECT NAME","STREET","CITY","STATE","ZIP-CODE"};
+		JTable t=new JTable(data,column);
+		t.setBounds(30,30,200,300);
+		JScrollPane sp=new JScrollPane(t);
+		middle.add(sp);
+		
+		middle.setBounds(268, 80, 500, 460);
+		middle.setBackground(new Color(246,190,0));
+		builderWindow.add(middle);
+		
+		update=new JButton("Update Project Status");
+		update.setBounds(410, 570, 225, 40);
+		builderWindow.add(update);
+		update.addActionListener(this);
+		
+		builderWindow.add(background);
+		builderWindow.setSize(1024,1024);
+		builderWindow.setTitle("Builder");
+		builderWindow.setVisible(true);
 	}
-
-	/**
-	 * Create the application.
-	 */
-	public BuilderGui() {
-		initialize();
+	
+	@SuppressWarnings("null")
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+		
+		if(e.getSource()==update)
+		{
+			f=new JFrame("Update");
+			f.setBackground(Color.BLACK);
+			
+			JLabel projectID = new JLabel("Project ID: ");
+			projectID.setBounds(70,50,100,20);
+			projectID.setFont(new Font("Times New Roman", Font.BOLD, 15));
+			f.add(projectID);
+			
+			id = new JTextField("");
+		    id.setBounds(200, 50, 100, 20);
+		    f.add(id);
+		    
+			JLabel s = new JLabel("Status: ");
+			s.setBounds(70,100,100,20);
+			s.setFont(new Font("Times New Roman", Font.BOLD, 15));
+			f.add(s);
+			
+			status = new JTextField("");
+			status.setBounds(200,100,100,20);
+			f.add(status);
+			
+			JButton enter =new JButton("Enter");
+			enter.setBounds(150, 200,100, 20);
+			f.add(enter);
+			enter.addActionListener(this);
+			
+		
+			f.setLayout(null);
+			f.setSize(500, 500);
+			f.setVisible(true);
+			
+		}
+		else if(e.getSource()==exit)
+		{
+			builderWindow.dispose();
+		}
+		else
+		{
+			//f.dispose();
+			JFrame frame= new JFrame("Message");
+			JOptionPane.showMessageDialog(frame, "Updated Successfully!");
+			p=id.getText();
+			str=status.getText();
+			
+			c.updateProjectStatus(p, str);
+			
+		}
 	}
+		
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.DARK_GRAY);
-		frame.setBounds(100, 100, 899, 514);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(0, -112, 885, 190);
-		lblNewLabel.setIcon(new ImageIcon(".\\src\\image.jpg"));
-		frame.getContentPane().add(lblNewLabel);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(133, 134, 624, 287);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-		
-		JTextField textField = new JTextField();
-		textField.setBounds(116, 24, 96, 19);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		JTextField textField_1 = new JTextField();
-		textField_1.setBounds(116, 59, 96, 19);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
-		
-		Label label = new Label("Name :");
-		label.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label.setBounds(36, 24, 80, 21);
-		panel.add(label);
-		
-		Label label_1 = new Label("Password :");
-		label_1.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1.setBounds(30, 101, 86, 21);
-		panel.add(label_1);
-		
-		Label label_1_1 = new Label("Email ID :");
-		label_1_1.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_1.setBounds(36, 57, 74, 21);
-		panel.add(label_1_1);
-		
-		Label label_1_2 = new Label("Phone :");
-		label_1_2.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_2.setBounds(36, 139, 80, 21);
-		panel.add(label_1_2);
-		
-		Label label_1_3 = new Label("Project No :");
-		label_1_3.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_3.setBounds(10, 178, 100, 21);
-		panel.add(label_1_3);
-		
-		Label label_1_4 = new Label("Sperviser id :");
-		label_1_4.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_4.setBounds(314, 29, 96, 21);
-		panel.add(label_1_4);
-		
-		Label label_1_5 = new Label("Company Name :");
-		label_1_5.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_5.setBounds(295, 64, 115, 21);
-		panel.add(label_1_5);
-		
-		Label label_1_6 = new Label("Address :");
-		label_1_6.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_6.setBounds(335, 118, 75, 21);
-		panel.add(label_1_6);
-		
-		Label label_1_7 = new Label("State :");
-		label_1_7.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_7.setBounds(351, 156, 59, 21);
-		panel.add(label_1_7);
-		
-		Label label_1_8 = new Label("zip code :");
-		label_1_8.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_8.setBounds(335, 194, 75, 21);
-		panel.add(label_1_8);
-		
-		Button button = new Button("Submit");
-		button.setFont(new Font("Dubai", Font.BOLD, 12));
-		button.setBackground(Color.ORANGE);
-		button.setBounds(236, 239, 115, 21);
-		panel.add(button);
-		
-		JTextField textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(116, 141, 96, 19);
-		panel.add(textField_3);
-		
-		JTextField textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(116, 180, 96, 19);
-		panel.add(textField_4);
-		
-		JTextField textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(417, 30, 96, 19);
-		panel.add(textField_5);
-		
-		JTextField textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(416, 70, 96, 19);
-		panel.add(textField_6);
-		
-		JTextField textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(417, 118, 96, 19);
-		panel.add(textField_7);
-		
-		JTextField textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(417, 156, 96, 19);
-		panel.add(textField_8);
-		
-		JTextField textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(417, 196, 96, 19);
-		panel.add(textField_9);
-		
-		JPasswordField passwordField = new JPasswordField();
-		passwordField.setBounds(116, 101, 96, 19);
-		panel.add(passwordField);
-		
-		Button button_2 = new Button("Back");
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RegisterGui Reobj = new RegisterGui();
-				Reobj.frame.setVisible(true);
-				frame.dispose();
-			}
-		});
-		button_2.setFont(new Font("Dubai", Font.BOLD, 12));
-		button_2.setBackground(Color.ORANGE);
-		button_2.setBounds(398, 239, 115, 21);
-		panel.add(button_2);
-		
-		Button button_1 = new Button("Home");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				homepage hobj = new homepage();
-				hobj.frame.setVisible(true);
-				frame.dispose();
-			}
-		});
-		button_1.setFont(new Font("Dubai", Font.BOLD, 12));
-		button_1.setBackground(Color.ORANGE);
-		button_1.setBounds(702, 92, 82, 21);
-		frame.getContentPane().add(button_1);
-		
-		Label label_2 = new Label("BUILDER");
-		label_2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 33));
-		label_2.setForeground(Color.WHITE);
-		label_2.setBackground(Color.DARK_GRAY);
-		label_2.setBounds(133, 84, 266, 44);
-		frame.getContentPane().add(label_2);
-		
-		Button button_1_1 = new Button("login ");
-		button_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				loginpage loginpage = new loginpage();
-				loginpage.setVisible(true);
-				frame.dispose();
-			}
-		});
-		button_1_1.setFont(new Font("Dubai", Font.BOLD, 12));
-		button_1_1.setBackground(Color.ORANGE);
-		button_1_1.setBounds(793, 92, 82, 21);
-		frame.getContentPane().add(button_1_1);
+public static void main(String[] args) {
+	// TODO Auto-generated method stub
+	new BuilderGui("B1");
 	}
 }

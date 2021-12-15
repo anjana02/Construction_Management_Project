@@ -1,205 +1,575 @@
 package gui;
 
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.Label;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import actorClasses.Client;
 
-public class ClientGui {
 
-	public JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClientGui window = new ClientGui();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+class registerClient implements ActionListener{
+	String userid = null;
+	JButton exitC = null;
+	JButton registerC = null;
+	JPanel CPane = null;
+	JFrame CRegis = null;
+	JLabel clientDetails = null;
+	JLabel noteC = null;
+	
+	JLabel streetName = null;
+	JTextField streetNameC = null;
+	JLabel city = null;
+	JTextField cityC = null;
+	JLabel state = null;
+	JTextField stateC = null;
+	JLabel zipCode = null;
+	JTextField zipCodeC = null;
+	
+	JLabel fname = null;
+	JTextField fnameC = null;
+	JLabel lname = null;
+	JTextField lnameC = null;
+	JLabel passcode = null;
+	JPasswordField passcodeC = null;
+	
+	JLabel phone = null;
+	JTextField phoneC = null;
+	JLabel email = null;
+	JTextField emailC = null;
+	JLabel msg = null; 
+	Client c = new Client();
+	public registerClient(){
+		CRegis = new JFrame("Client Registration");
+//		ImageIcon img = new ImageIcon("src/image.jpg");
+		JLabel background = new JLabel("",JLabel.CENTER);
+		
+		CPane = new JPanel();
+		CPane.setBounds(80,40,545,410);
+		CPane.setBackground(new Color(246,190,0));
+		CRegis.add(CPane);
+		
+		JLabel header = new JLabel("Client Registration");
+		header.setBounds(25,9,270,25);
+		header.setForeground(Color.BLACK);
+		header.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		CRegis.add(header);
+		
+		clientDetails = new JLabel("Client Details");
+		clientDetails.setBounds(210,10,200,25);
+		clientDetails.setForeground(Color.BLACK);
+		clientDetails.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		CPane.add(clientDetails);
+		
+		streetName = new JLabel("Street name:");
+		streetName.setBounds(75,40,200,25);
+		streetName.setForeground(Color.DARK_GRAY);
+		streetName.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		CPane.add(streetName);
+		
+		streetNameC = new JTextField("");
+		streetNameC.setBounds(275,42,200,20);
+		streetNameC.setForeground(Color.DARK_GRAY);
+		streetNameC.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		CPane.add(streetNameC);
+		
+		city = new JLabel("City:");
+		city.setBounds(75,70,200,25);
+		city.setForeground(Color.DARK_GRAY);
+		city.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		CPane.add(city);
+		
+		cityC = new JTextField("");
+		cityC.setBounds(275,72,200,20);
+		cityC.setForeground(Color.DARK_GRAY);
+		cityC.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		CPane.add(cityC);
+		
+		state = new JLabel("State:");
+		state.setBounds(75,100,200,25);
+		state.setForeground(Color.DARK_GRAY);
+		state.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		CPane.add(state);
+		
+		stateC = new JTextField("");
+		stateC.setBounds(275,102,200,20);
+		stateC.setForeground(Color.DARK_GRAY);
+		stateC.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		CPane.add(stateC);
+		
+		zipCode = new JLabel("Zip code:");
+		zipCode.setBounds(75,130,200,25);
+		zipCode.setForeground(Color.DARK_GRAY);
+		zipCode.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		CPane.add(zipCode);
+		
+		zipCodeC = new JTextField("");
+		zipCodeC.setBounds(275,132,200,20);
+		zipCodeC.setForeground(Color.DARK_GRAY);
+		zipCodeC.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		CPane.add(zipCodeC);
+		
+		fname = new JLabel("First name:");
+		fname.setBounds(75,160,200,25);
+		fname.setForeground(Color.DARK_GRAY);
+		fname.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		CPane.add(fname);
+		
+		fnameC = new JTextField("");
+		fnameC.setBounds(275,162,200,20);
+		fnameC.setForeground(Color.DARK_GRAY);
+		fnameC.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		CPane.add(fnameC);
+		
+		lname = new JLabel("Last name:");
+		lname.setBounds(75,190,200,25);
+		lname.setForeground(Color.DARK_GRAY);
+		lname.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		CPane.add(lname);
+		
+		lnameC = new JTextField("");
+		lnameC.setBounds(275,192,200,20);
+		lnameC.setForeground(Color.DARK_GRAY);
+		lnameC.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		CPane.add(lnameC);
+		
+		passcode = new JLabel("Set password:");
+		passcode.setBounds(75,280,200,25);
+		passcode.setForeground(Color.DARK_GRAY);
+		passcode.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		CPane.add(passcode);
+		
+		passcodeC = new JPasswordField("");
+		passcodeC.setBounds(275,282,200,20);
+		passcodeC.setForeground(Color.DARK_GRAY);
+		passcodeC.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		CPane.add(passcodeC);
+		
+		phone = new JLabel("Phone number:");
+		phone.setBounds(75,220,200,25);
+		phone.setForeground(Color.DARK_GRAY);
+		phone.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		CPane.add(phone);
+		
+		phoneC = new JTextField("");
+		phoneC.setBounds(275,222,200,20);
+		phoneC.setForeground(Color.DARK_GRAY);
+		phoneC.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		CPane.add(phoneC);
+		
+		email = new JLabel("Email ID:");
+		email.setBounds(75,250,200,25);
+		email.setForeground(Color.DARK_GRAY);
+		email.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		CPane.add(email);
+		
+		emailC = new JTextField("");
+		emailC.setBounds(275,252,200,20);
+		emailC.setForeground(Color.DARK_GRAY);
+		emailC.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		CPane.add(emailC);
+		
+		registerC = new JButton("Register!");
+		CPane.add(registerC);
+		registerC.setBounds(210, 340, 130, 35);
+		
+		noteC = new JLabel("**ClientID is generated as soon as you register.");
+		noteC.setBounds(150,380,300,20);
+		noteC.setForeground(Color.BLACK);
+		noteC.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+		CPane.add(noteC);
+		
+		exitC = new JButton("Exit");
+		exitC.setBounds(600,9,90,18);
+		exitC.setForeground(Color.BLACK);
+		exitC.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		CRegis.add(exitC);
+		
+		msg = new JLabel("");
+		msg.setBounds(230,320,200,20);
+		msg.setForeground(Color.BLACK);
+		msg.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		CPane.add(msg);
+		
+		background.setBounds(0,0,720,500);
+		CRegis.add(background);
+		CRegis.setSize(720,500);
+		
+		CPane.setLayout(null);
+		CRegis.setLayout(null);
+		CRegis.setVisible(true);
+		
+		streetNameC.addActionListener(this);
+		cityC.addActionListener(this);
+		stateC.addActionListener(this);
+		zipCodeC.addActionListener(this);
+		fnameC.addActionListener(this);
+		lnameC.addActionListener(this);
+		passcodeC.addActionListener(this);
+		phoneC.addActionListener(this);
+		emailC.addActionListener(this);
+		exitC.addActionListener(this);
+		registerC.addActionListener(this);
 	}
+	
+	@SuppressWarnings("deprecation")
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(exitC)) {
+			CRegis.dispose();
+		}
+		else if(e.getSource().equals(registerC)) {
+			
+			String[] s = new String[1];
+			s[0] = emailC.getText();
+			long[] l = new long[1];
+			l[0] = Long.parseLong(phoneC.getText());
+			String id = c.clientRegistration(fnameC.getText(), lnameC.getText(), streetNameC.getText(), cityC.getText(), stateC.getText(), zipCodeC.getText(), passcodeC.getText(), s, l);
+			msg.setText("Your Id is "+id);
+			JFrame frame= new JFrame("Message");
+			JOptionPane.showMessageDialog(frame, "Registered Successfully!");
+		}
+	}
+}
 
-	/**
-	 * Create the application.
-	 */
+class isClientRegistered implements ActionListener{
+	JFrame isCregistered = null;
+	JButton clRegis = null;
+	JButton cContinue = null;
+	public isClientRegistered(){
+		isCregistered = new JFrame("Have You Registered?");
+		
+		JLabel nClient = new JLabel("New Client?");
+		nClient.setBounds(85,9,200,25);
+		nClient.setForeground(Color.BLACK);
+		nClient.setFont(new Font("Times New Roman", Font.ITALIC, 20));
+		isCregistered.add(nClient);
+		
+		clRegis = new JButton("Register!");
+		clRegis.setBounds(80, 45, 120, 22);
+		isCregistered.add(clRegis);
+		
+		JLabel RClient = new JLabel("Already Registered?");
+		RClient.setBounds(55,85,200,25);
+		RClient.setForeground(Color.BLACK);
+		RClient.setFont(new Font("Times New Roman", Font.ITALIC, 20));
+		isCregistered.add(RClient);
+		
+		cContinue = new JButton("Continue");
+		cContinue.setBounds(80, 120, 120, 22);
+		isCregistered.add(cContinue);
+		
+		isCregistered.setSize(300,200);
+		isCregistered.setLayout(null);
+		isCregistered.setVisible(true);
+		
+		cContinue.addActionListener(this);
+		clRegis.addActionListener(this);
+	}
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(cContinue)) {
+			isCregistered.dispose();
+		}
+		else {
+			new registerClient();
+			isCregistered.dispose();
+		}
+	}
+}
+
+class siteRegistration implements ActionListener{
+	String userid = null;
+	JButton exitS = null;
+	JButton registerS = null;
+	JPanel sitePane = null;
+	JFrame siteRegis = null;
+	JLabel siteDetails = null;
+	JLabel noteS = null;
+	
+	JLabel streetName = null;
+	JTextField streetNameT = null;
+	JLabel city = null;
+	JTextField cityT = null;
+	JLabel state = null;
+	JTextField stateT = null;
+	JLabel zipCode = null;
+	JTextField zipCodeT = null;
+	
+	JLabel area = null;
+	JTextField areaT = null;
+	JLabel terrinType = null;
+	JTextField terrinTypeT = null;
+	JLabel soilType = null;
+	JTextField soilTypeT = null;
+	
+	JLabel ownerType = null;
+	JTextField ownerTypeT = null;
+	JLabel dateOfPurchase = null;
+	JTextField dateOfPurchaseT = null;
+	
+	Client cl = null;
+	public siteRegistration(String username){
+		userid = username;
+		cl = new Client(userid);
+		siteRegis = new JFrame("Site Registration");
+		ImageIcon img = new ImageIcon("src/images/image.jpg");
+		JLabel background = new JLabel("",img,JLabel.CENTER);
+		
+		sitePane = new JPanel();
+		sitePane.setBounds(80,40,545,410);
+		sitePane.setBackground(new  Color(246,190,0));
+		siteRegis.add(sitePane);
+		
+		JLabel header = new JLabel("Site Registration");
+		header.setBounds(25,9,200,25);
+		header.setForeground(Color.BLACK);
+		header.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		siteRegis.add(header);
+		
+		siteDetails = new JLabel("Site Details");
+		siteDetails.setBounds(210,10,200,25);
+		siteDetails.setForeground(Color.BLACK);
+		siteDetails.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		sitePane.add(siteDetails);
+		
+		streetName = new JLabel("Street name:");
+		streetName.setBounds(75,40,200,25);
+		streetName.setForeground(Color.DARK_GRAY);
+		streetName.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		sitePane.add(streetName);
+		
+		streetNameT = new JTextField("");
+		streetNameT.setBounds(275,42,200,20);
+		streetNameT.setForeground(Color.DARK_GRAY);
+		streetNameT.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		sitePane.add(streetNameT);
+		
+		city = new JLabel("City:");
+		city.setBounds(75,70,200,25);
+		city.setForeground(Color.DARK_GRAY);
+		city.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		sitePane.add(city);
+		
+		cityT = new JTextField("");
+		cityT.setBounds(275,72,200,20);
+		cityT.setForeground(Color.DARK_GRAY);
+		cityT.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		sitePane.add(cityT);
+		
+		state = new JLabel("State:");
+		state.setBounds(75,100,200,25);
+		state.setForeground(Color.DARK_GRAY);
+		state.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		sitePane.add(state);
+		
+		stateT = new JTextField("");
+		stateT.setBounds(275,102,200,20);
+		stateT.setForeground(Color.DARK_GRAY);
+		stateT.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		sitePane.add(stateT);
+		
+		zipCode = new JLabel("Zip code:");
+		zipCode.setBounds(75,130,200,25);
+		zipCode.setForeground(Color.DARK_GRAY);
+		zipCode.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		sitePane.add(zipCode);
+		
+		zipCodeT = new JTextField("");
+		zipCodeT.setBounds(275,132,200,20);
+		zipCodeT.setForeground(Color.DARK_GRAY);
+		zipCodeT.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		sitePane.add(zipCodeT);
+		
+		area = new JLabel("Area(in sq.yards):");
+		area.setBounds(75,160,200,25);
+		area.setForeground(Color.DARK_GRAY);
+		area.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		sitePane.add(area);
+		
+		areaT = new JTextField("");
+		areaT.setBounds(275,162,200,20);
+		areaT.setForeground(Color.DARK_GRAY);
+		areaT.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		sitePane.add(areaT);
+		
+		terrinType = new JLabel("Terrain type:");
+		terrinType.setBounds(75,190,200,25);
+		terrinType.setForeground(Color.DARK_GRAY);
+		terrinType.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		sitePane.add(terrinType);
+		
+		terrinTypeT = new JTextField("");
+		terrinTypeT.setBounds(275,192,200,20);
+		terrinTypeT.setForeground(Color.DARK_GRAY);
+		terrinTypeT.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		sitePane.add(terrinTypeT);
+		
+		soilType = new JLabel("Soil type:");
+		soilType.setBounds(75,220,200,25);
+		soilType.setForeground(Color.DARK_GRAY);
+		soilType.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		sitePane.add(soilType);
+		
+		soilTypeT = new JTextField("");
+		soilTypeT.setBounds(275,222,200,20);
+		soilTypeT.setForeground(Color.DARK_GRAY);
+		soilTypeT.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		sitePane.add(soilTypeT);
+		
+		ownerType = new JLabel("Ownership type:");
+		ownerType.setBounds(75,250,200,25);
+		ownerType.setForeground(Color.DARK_GRAY);
+		ownerType.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		sitePane.add(ownerType);
+		
+		ownerTypeT = new JTextField("");
+		ownerTypeT.setBounds(275,252,200,20);
+		ownerTypeT.setForeground(Color.DARK_GRAY);
+		ownerTypeT.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		sitePane.add(ownerTypeT);
+		
+		dateOfPurchase = new JLabel("Date of purchase:");
+		dateOfPurchase.setBounds(75,280,200,25);
+		dateOfPurchase.setForeground(Color.DARK_GRAY);
+		dateOfPurchase.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		sitePane.add(dateOfPurchase);
+		
+		dateOfPurchaseT = new JTextField("");
+		dateOfPurchaseT.setBounds(275,282,200,20);
+		dateOfPurchaseT.setForeground(Color.DARK_GRAY);
+		dateOfPurchaseT.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		sitePane.add(dateOfPurchaseT);
+		
+		registerS = new JButton("Register!");
+		sitePane.add(registerS);
+		registerS.setBounds(210, 340, 130, 35);
+		
+		noteS = new JLabel("**SiteID is generated as soon as you register.");
+		noteS.setBounds(150,380,300,20);
+		noteS.setForeground(Color.BLACK);
+		noteS.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+		sitePane.add(noteS);
+		
+		exitS = new JButton("Exit");
+		exitS.setBounds(600,9,90,18);
+		exitS.setForeground(Color.BLACK);
+		exitS.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		siteRegis.add(exitS);
+		
+		background.setBounds(0,0,720,500);
+		siteRegis.add(background);
+		siteRegis.setSize(720,500);
+		
+		sitePane.setLayout(null);
+		siteRegis.setLayout(null);
+		siteRegis.setVisible(true);
+		
+		/*
+		streetNameT.addActionListener(this);
+		cityT.addActionListener(this);
+		stateT.addActionListener(this);
+		zipCodeT.addActionListener(this);
+		areaT.addActionListener(this);
+		terrinTypeT.addActionListener(this);
+		soilTypeT.addActionListener(this);
+		ownerTypeT.addActionListener(this);
+		dateOfPurchaseT.addActionListener(this);*/
+		exitS.addActionListener(this);
+		registerS.addActionListener(this);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(exitS)) {
+			siteRegis.dispose();
+		}
+		else if(e.getSource().equals(registerS)) {
+			
+			cl.enterSiteInfo(streetNameT.getText(), cityT.getText(), stateT.getText(), zipCodeT.getText(), areaT.getText(), terrinTypeT.getText(), soilTypeT.getSelectedText(), dateOfPurchaseT.getText(), ownerTypeT.getText());
+			JFrame frame= new JFrame("Message");
+			JOptionPane.showMessageDialog(frame, "Registered Successfully!");
+		}
+	}
+}
+
+public class ClientGui implements ActionListener {
+	JFrame clientWindow = null;
+	JButton exit = null;
+	JButton addSite = null;
+	public String userID = null;
+	
 	public ClientGui() {
-		initialize();
+		new isClientRegistered();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.DARK_GRAY);
-		frame.setBounds(100, 100, 899, 514);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	
+	public ClientGui(String username){
+		clientWindow = new JFrame("Client");
+		ImageIcon img = new ImageIcon("src/Construction.jpg");
+		JLabel background = new JLabel("",img,JLabel.CENTER);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(0, -112, 885, 190);
-		lblNewLabel.setIcon(new ImageIcon(".\\src\\image.jpg"));
-		frame.getContentPane().add(lblNewLabel);
+		userID = username;
+		Client c = new Client(username);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(133, 134, 624, 287);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
+		JLabel user = new JLabel("Welcome! "+c.getName());
+		user.setBounds(10,7,250,12);
+		user.setForeground(Color.BLACK);
+		user.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		clientWindow.add(user);
 		
-		JTextField textField = new JTextField();
-		textField.setBounds(116, 24, 96, 19);
-		panel.add(textField);
-		textField.setColumns(10);
+		JLabel userType = new JLabel("Client");
+		userType.setBounds(320,7,200,12);
+		userType.setForeground(Color.BLACK);
+		userType.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		clientWindow.add(userType);
 		
-		JTextField textField_1 = new JTextField();
-		textField_1.setBounds(116, 59, 96, 19);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		exit = new JButton("Exit");
+		exit.setBounds(600,7,90,18);
+		exit.setForeground(Color.BLACK);
+		exit.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		clientWindow.add(exit);
 		
-		Label label = new Label("Name :");
-		label.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label.setBounds(36, 24, 80, 21);
-		panel.add(label);
+		JPanel pane = new JPanel();
+		pane.setBounds(90,30,500,300);
+		pane.setBackground(new  Color(246,190,0));
+		clientWindow.add(pane);
 		
-		Label label_1 = new Label("Password :");
-		label_1.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1.setBounds(30, 101, 86, 21);
-		panel.add(label_1);
+		JLabel projStat = new JLabel("Your Projects");
+		projStat.setBounds(270,20,200,20);
+		projStat.setForeground(Color.DARK_GRAY);
+		projStat.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		pane.add(projStat);
 		
-		Label label_1_1 = new Label("Email ID :");
-		label_1_1.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_1.setBounds(36, 57, 74, 21);
-		panel.add(label_1_1);
+		String[] columns = {"SiteID","Verification_status","Start_date","End_date","Status","City","State"};
+		JTable table = new JTable(c.trackProjectStatus(),columns);
+		JScrollPane scroll = new JScrollPane(table);
+		scroll.setSize(300,100);
+		pane.add(scroll);
 		
-		Label label_1_2 = new Label("Phone :");
-		label_1_2.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_2.setBounds(36, 139, 80, 21);
-		panel.add(label_1_2);
 		
-		Label label_1_3 = new Label("Project Type :");
-		label_1_3.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_3.setBounds(10, 178, 100, 21);
-		panel.add(label_1_3);
+		addSite = new JButton("Add Site");
+		addSite.setText("Add Site");
+		clientWindow.add(addSite);
+		addSite.setBounds(270, 350, 130, 35);
 		
-		Label label_1_4 = new Label("Duration :");
-		label_1_4.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_4.setBounds(335, 29, 75, 21);
-		panel.add(label_1_4);
+		background.setBounds(0,0,720,500);
+		clientWindow.add(background);
+		clientWindow.setSize(720,500);
 		
-		Label label_1_5 = new Label("Street name :");
-		label_1_5.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_5.setBounds(314, 64, 96, 21);
-		panel.add(label_1_5);
+		clientWindow.setLayout(null);
+		clientWindow.setVisible(true);
 		
-		Label label_1_6 = new Label("City :");
-		label_1_6.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_6.setBounds(351, 116, 59, 21);
-		panel.add(label_1_6);
-		
-		Label label_1_7 = new Label("State :");
-		label_1_7.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_7.setBounds(351, 156, 59, 21);
-		panel.add(label_1_7);
-		
-		Label label_1_8 = new Label("zip code :");
-		label_1_8.setFont(new Font("Calibri Light", Font.BOLD, 12));
-		label_1_8.setBounds(335, 194, 75, 21);
-		panel.add(label_1_8);
-		
-		Button button = new Button("Submit");
-		button.setFont(new Font("Dubai", Font.BOLD, 12));
-		button.setBackground(Color.ORANGE);
-		button.setBounds(236, 239, 115, 21);
-		panel.add(button);
-		
-		JTextField textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(116, 141, 96, 19);
-		panel.add(textField_3);
-		
-		JTextField textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(116, 180, 96, 19);
-		panel.add(textField_4);
-		
-		JTextField textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(417, 30, 96, 19);
-		panel.add(textField_5);
-		
-		JTextField textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(416, 70, 96, 19);
-		panel.add(textField_6);
-		
-		JTextField textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(417, 118, 96, 19);
-		panel.add(textField_7);
-		
-		JTextField textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(417, 156, 96, 19);
-		panel.add(textField_8);
-		
-		JTextField textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(417, 196, 96, 19);
-		panel.add(textField_9);
-		
-		JPasswordField passwordField = new JPasswordField();
-		passwordField.setBounds(116, 101, 96, 19);
-		panel.add(passwordField);
-		
-		JButton btnNewButton = new JButton("Back");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.setBackground(Color.ORANGE);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RegisterGui Reobj = new RegisterGui();
-				Reobj.frame.setVisible(true);
-				frame.dispose();
-			}
-		});
-		btnNewButton.setBounds(380, 239, 96, 21);
-		panel.add(btnNewButton);
-		
-		Button button_1 = new Button("Home");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				homepage hobj = new homepage();
-				hobj.frame.setVisible(true);
-				frame.dispose();
-			}
-		});
-		button_1.setFont(new Font("Dubai", Font.BOLD, 12));
-		button_1.setBackground(Color.ORANGE);
-		button_1.setBounds(793, 92, 82, 21);
-		frame.getContentPane().add(button_1);
-		
-		Label label_2 = new Label("CLIENT");
-		label_2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 33));
-		label_2.setForeground(Color.WHITE);
-		label_2.setBackground(Color.DARK_GRAY);
-		label_2.setBounds(133, 84, 266, 44);
-		frame.getContentPane().add(label_2);
+		addSite.addActionListener(this);
+		exit.addActionListener(this);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(exit)) {
+			clientWindow.dispose();
+		}
+		else if(e.getSource().equals(addSite)){
+			new siteRegistration(userID);
+		}
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new ClientGui();
 	}
 
 }

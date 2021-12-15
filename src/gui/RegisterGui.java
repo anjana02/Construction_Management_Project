@@ -13,6 +13,7 @@ import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("unused")
 public class RegisterGui {
 
 	public JFrame frame;
@@ -68,13 +69,13 @@ public class RegisterGui {
 		panel_1.add(lblNewLabel_1);
 		
 		Button button_1 = new Button("Home");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 homepage hobj = new homepage();
-				 hobj.frame.setVisible(true);
-				 frame.dispose();
-			}
-		});
+//		button_1.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				 homepage hobj = new homepage();
+//				 hobj.frame.setVisible(true);
+//				 dispose();
+//			}
+//		});
 		button_1.setFont(new Font("Dubai", Font.BOLD, 20));
 		button_1.setBackground(Color.ORANGE);
 		button_1.setBounds(740, 42, 123, 33);
@@ -92,60 +93,31 @@ public class RegisterGui {
 		panel_2.add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Client");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ClientGui Cobj = new ClientGui();
-				Cobj.frame.setVisible(true);
-				frame.dispose();
-				
-			}
-		});
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
 		btnNewButton.setBounds(41, 233, 139, 34);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Builder ");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BuilderGui Bobj = new BuilderGui();
-				Bobj.frame.setVisible(true);
-				frame.dispose();
-			}
-		});
 		btnNewButton_1.setBackground(Color.WHITE);
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.BOLD, 16));
 		btnNewButton_1.setBounds(41, 294, 139, 34);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnRetailer = new JButton("Retailer");
-		btnRetailer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RetailerGui Reobj = new RetailerGui();
-				Reobj.frame.setVisible(true);
-				frame.dispose();
-			}
-		});
 		btnRetailer.setBackground(Color.WHITE);
 		btnRetailer.setFont(new Font("Times New Roman", Font.BOLD, 16));
 		btnRetailer.setBounds(41, 362, 139, 34);
 		frame.getContentPane().add(btnRetailer);
 		
 		JButton btnManager = new JButton("Manager");
-		btnManager.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ManagerGui Mobj = new ManagerGui();
-				Mobj.frame.setVisible(true);
-				frame.dispose();
-			}
-		});
 		btnManager.setBackground(Color.WHITE);
 		btnManager.setFont(new Font("Times New Roman", Font.BOLD, 16));
 		btnManager.setBounds(41, 426, 139, 34);
 		frame.getContentPane().add(btnManager);
 		
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(".\\src\\bg3.png"));
+		lblNewLabel_3.setIcon(new ImageIcon(".\\images\\bg3.png"));
 		lblNewLabel_3.setBounds(231, 116, 666, 459);
 		frame.getContentPane().add(lblNewLabel_3);
 	}
