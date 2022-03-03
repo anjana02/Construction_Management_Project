@@ -1,5 +1,8 @@
 # Construction_Management_Project
-Create a fully furnished database base management system for a construction company 
+Created a fully furnished database base management system for a construction management company 
+
+![Screenshot](vertigo.png)
+
 
 Contributors:
 ------------
@@ -7,6 +10,4 @@ Contributors:
 - Amal Vinod 
 - Anagha Manoj 
 - Emeric C Alex
-
-![Screenshot](vertigo.png)
 
