@@ -8,5 +8,5 @@ Contributors:
 - Anagha Manoj 
 - Emeric C Alex
 
-![Screenshot](vertigo.p)
+![Screenshot](vertigo.png)
 
